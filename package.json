@@ -1,0 +1,30 @@
+{
+  "name": "samplerestwithexpress",
+  "version": "1.0.0",
+  "description": "sample rest api using express package",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha",
+    "lint": "eslint ./src ./test --fix",
+    "start": "nodemon ./src/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "express": "^4.17.1",
+    "express-request-id": "^1.4.1",
+    "express-validator": "^6.6.0",
+    "i18n": "^0.10.0",
+    "mocha": "^8.0.1",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "eslint": "^7.5.0",
+    "eslint-config-google": "^0.14.0",
+    "nodemon": "^2.0.4"
+  }
+}
