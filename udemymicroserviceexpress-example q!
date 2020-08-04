@@ -1,0 +1,217 @@
+CREATE-REPOSITORY()                                        CREATE-REPOSITORY()
+
+
+
+NNAAMMEE
+       create-repository -
+
+DDEESSCCRRIIPPTTIIOONN
+       Creates a repository. For more information, see _A_m_a_z_o_n _E_C_R _R_e_p_o_s_i_t_o_r_i_e_s
+       in the _A_m_a_z_o_n _E_l_a_s_t_i_c _C_o_n_t_a_i_n_e_r _R_e_g_i_s_t_r_y _U_s_e_r _G_u_i_d_e .
+
+       See also: AWS API Documentation
+
+       See 'aws help' for descriptions of global parameters.
+
+SSYYNNOOPPSSIISS
+            create-repository
+          --repository-name <value>
+          [--tags <value>]
+          [--image-tag-mutability <value>]
+          [--image-scanning-configuration <value>]
+          [--cli-input-json | --cli-input-yaml]
+          [--generate-cli-skeleton <value>]
+          [--cli-auto-prompt <value>]
+
+OOPPTTIIOONNSS
+       ----rreeppoossiittoorryy--nnaammee (string)
+          The name to use for the repository. The repository name may be spec-
+          ified  on  its  own  (such as nnggiinnxx--wweebb--aapppp ) or it can be prepended
+          with a namespace to group the repository into a  category  (such  as
+          pprroojjeecctt--aa//nnggiinnxx--wweebb--aapppp ).
+
+       ----ttaaggss (list)
+          The metadata that you apply to the repository to help you categorize
+          and organize them. Each tag consists of a key and an optional value,
+          both  of  which  you  define.  Tag keys can have a maximum character
+          length of 128 characters, and tag values can have a  maximum  length
+          of 256 characters.
+
+       Shorthand Syntax:
+
+          Key=string,Value=string ...
+
+       JSON Syntax:
+
+          [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+            ...
+          ]
+
+       ----iimmaaggee--ttaagg--mmuuttaabbiilliittyy (string)
+          The  tag mutability setting for the repository. If this parameter is
+          omitted, the default setting of MMUUTTAABBLLEE will be used which will  al-
+          low image tags to be overwritten. If IIMMMMUUTTAABBLLEE is specified, all im-
+          age tags within the repository will be immutable which will  prevent
+          them from being overwritten.
+
+          Possible values:
+
+          +o MMUUTTAABBLLEE
+
+          +o IIMMMMUUTTAABBLLEE
+
+       ----iimmaaggee--ssccaannnniinngg--ccoonnffiigguurraattiioonn (structure)
+          The  image  scanning  configuration for the repository. This setting
+          determines whether images are scanned for known vulnerabilities  af-
+          ter being pushed to the repository.
+
+       Shorthand Syntax:
+
+          scanOnPush=boolean
+
+       JSON Syntax:
+
+          {
+            "scanOnPush": true|false
+          }
+
+       ----ccllii--iinnppuutt--jjssoonn  |  ----ccllii--iinnppuutt--yyaammll (string) Reads arguments from the
+       JSON string provided. The JSON string follows the  format  provided  by
+       ----ggeenneerraattee--ccllii--sskkeelleettoonn. If other arguments are provided on the command
+       line, those values will override the JSON-provided values.  It  is  not
+       possible to pass arbitrary binary values using a JSON-provided value as
+       the string will be taken literally. This may  not  be  specified  along
+       with ----ccllii--iinnppuutt--yyaammll.
+
+       ----ggeenneerraattee--ccllii--sskkeelleettoonn  (string)  Prints  a  JSON skeleton to standard
+       output without sending an API request. If provided with no value or the
+       value iinnppuutt, prints a sample input JSON that can be used as an argument
+       for ----ccllii--iinnppuutt--jjssoonn. Similarly, if provided yyaammll--iinnppuutt it will print a
+       sample  input  YAML that can be used with ----ccllii--iinnppuutt--yyaammll. If provided
+       with the value oouuttppuutt, it validates the command inputs  and  returns  a
+       sample output JSON for that command.
+
+       ----ccllii--aauuttoo--pprroommpptt  (boolean) Automatically prompt for CLI input parame-
+       ters.
+
+       See 'aws help' for descriptions of global parameters.
+
+EEXXAAMMPPLLEESS
+       EExxaammppllee 11:: TToo ccrreeaattee aa rreeppoossiittoorryy
+
+       The following ccrreeaattee--rreeppoossiittoorryy example creates a repository inside the
+       specified namespace in the default registry for an account.
+
+          aws ecr create-repository \
+              --repository-name project-a/nginx-web-app
+
+       Output:
+
+          {
+              "repository": {
+                  "registryId": "123456789012",
+                  "repositoryName": "sample-repo",
+                  "repositoryArn": "arn:aws:ecr:us-west-2:123456789012:repository/project-a/nginx-web-app"
+              }
+          }
+
+       For  more information, see _C_r_e_a_t_i_n_g _a _R_e_p_o_s_i_t_o_r_y in the _A_m_a_z_o_n _E_C_R _U_s_e_r
+       _G_u_i_d_e.
+
+       EExxaammppllee 22:: TToo ccrreeaattee aa rreeppoossiittoorryy ccoonnffiigguurreedd wwiitthh iimmaaggee ttaagg  iimmmmuuttaabbiill--
+       iittyy
+
+       The following ccrreeaattee--rreeppoossiittoorryy example creates a repository configured
+       for tag immutability in the default registry for an account.
+
+          aws ecr create-repository \
+              --repository-name sample-repo \
+              --image-tag-mutability IMMUTABLE
+
+       Output:
+
+          {
+              "repository": {
+                  "registryId": "123456789012",
+                  "repositoryName": "sample-repo",
+                  "repositoryArn": "arn:aws:ecr:us-west-2:123456789012:repository/sample-repo",
+                  "imageTagMutability": "IMMUTABLE"
+              }
+          }
+
+       For more information, see _I_m_a_g_e _T_a_g _M_u_t_a_b_i_l_i_t_y in the _A_m_a_z_o_n  _E_C_R  _U_s_e_r
+       _G_u_i_d_e.
+
+       EExxaammppllee 33:: TToo ccrreeaattee aa rreeppoossiittoorryy ccoonnffiigguurreedd wwiitthh aa ssccaannnniinngg ccoonnffiigguurraa--
+       ttiioonn
+
+       The following ccrreeaattee--rreeppoossiittoorryy example creates a repository configured
+       to  perform  a vulnerability scan on image push in the default registry
+       for an account.
+
+          aws ecr create-repository \
+              --repository-name sample-repo \
+              --image-scanning-configuration scanOnPush=true
+
+       Output:
+
+          {
+              "repository": {
+                  "registryId": "123456789012",
+                  "repositoryName": "sample-repo",
+                  "repositoryArn": "arn:aws:ecr:us-west-2:123456789012:repository/sample-repo",
+                  "imageScanningConfiguration": {
+                      "scanOnPush": true
+                  }
+              }
+          }
+
+       For more information, see _I_m_a_g_e _S_c_a_n_n_i_n_g in the _A_m_a_z_o_n _E_C_R _U_s_e_r _G_u_i_d_e.
+
+OOUUTTPPUUTT
+       repository -> (structure)
+          The repository that was created.
+
+          repositoryArn -> (string)
+              The Amazon Resource Name (ARN) that identifies  the  repository.
+              The  ARN contains the aarrnn::aawwss::eeccrr namespace, followed by the re-
+              gion of the repository, AWS account ID of the repository  owner,
+              repository   namespace,   and   repository  name.  For  example,
+              aarrnn::aawwss::eeccrr::rreeggiioonn::001122334455667788991100::rreeppoossiittoorryy//tteesstt .
+
+          registryId -> (string)
+              The AWS account ID associated with the  registry  that  contains
+              the repository.
+
+          repositoryName -> (string)
+              The name of the repository.
+
+          repositoryUri -> (string)
+              The URI for the repository. You can use this URI for Docker ppuusshh
+              or ppuullll operations.
+
+          createdAt -> (timestamp)
+              The date and time, in JavaScript date format, when  the  reposi-
+              tory was created.
+
+          imageTagMutability -> (string)
+              The tag mutability setting for the repository.
+
+          imageScanningConfiguration -> (structure)
+              The image scanning configuration for a repository.
+
+              scanOnPush -> (boolean)
+                 The  setting that determines whether images are scanned after
+                 being pushed to a repository. If set to ttrruuee , images will be
+                 scanned  after  being pushed. If this parameter is not speci-
+                 fied, it will default to ffaallssee and images will not be scanned
+                 unless  a  scan  is manually started with the  StartImageScan
+                 API.
+
+
+
+                                                           CREATE-REPOSITORY()
